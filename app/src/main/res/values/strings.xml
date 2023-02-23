@@ -3,4 +3,7 @@
 
     <string name="tool_empty"/>
     <string name="main_activity_navigation_about_title">About</string>
+    <string name="about_fragment_powered_by_msg">powered by</string>
+    <string name="about_fragment_author_name_msg">Mikhedov Konstantin</string>
+    <string name="about_fragment_subtitle">student of BIB224</string>
 </resources>

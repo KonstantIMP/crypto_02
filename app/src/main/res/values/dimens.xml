@@ -4,4 +4,11 @@
     <dimen name="floating_bottom_navigation_view_margin">12dp</dimen>
     <dimen name="floating_bottom_navigation_view_radius">25dp</dimen>
     <dimen name="floating_bottom_navigation_view_elevation">5dp</dimen>
+
+    <dimen name="content_card_margin">12dp</dimen>
+    <dimen name="content_card_radius">30dp</dimen>
+    <dimen name="content_card_padding">16dp</dimen>
+    <dimen name="content_card_elevation">7dp</dimen>
+
+    <dimen name="about_fargment_photo_size">160dp</dimen>
 </resources>
