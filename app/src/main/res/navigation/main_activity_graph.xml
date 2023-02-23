@@ -11,4 +11,10 @@
         android:label="@string/main_activity_navigation_about_title"
         tools:layout="@layout/fragment_user_layout" />
 
+    <fragment
+        android:id="@+id/hill_page"
+        android:name="org.kimp.crypto2.ui.fragment.HillFragment"
+        android:label="@string/main_activity_navigation_hills_title"
+        tools:layout="@layout/fragment_hill_layout" />
+
 </navigation>

@@ -5,4 +5,10 @@
         android:enabled="true"
         android:icon="@drawable/ic_user"
         android:title="@string/main_activity_navigation_about_title"/>
+
+    <item
+        android:id="@+id/hill_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_key"
+        android:title="@string/main_activity_navigation_hills_title"/>
 </menu>
