@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/about_page"
+        android:enabled="true"
+        android:icon="@drawable/ic_user"
+        android:title="@string/main_activity_navigation_about_title"/>
+</menu>

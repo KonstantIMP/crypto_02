@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_graph"
+    app:startDestination="@id/about_page">
+
+    <fragment
+        android:id="@+id/about_page"
+        android:name="org.kimp.crypto2.ui.fragment.UserFragment"
+        android:label="@string/main_activity_navigation_about_title"
+        tools:layout="@layout/fragment_user_layout" />
+
+</navigation>

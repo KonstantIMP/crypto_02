@@ -1,3 +1,7 @@
 <?xml version="1.1" encoding="utf-8"?>
 <resources>
+    <dimen name="floating_bottom_navigation_view_height">70dp</dimen>
+    <dimen name="floating_bottom_navigation_view_margin">12dp</dimen>
+    <dimen name="floating_bottom_navigation_view_radius">25dp</dimen>
+    <dimen name="floating_bottom_navigation_view_elevation">5dp</dimen>
 </resources>
