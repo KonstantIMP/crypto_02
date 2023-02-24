@@ -7,4 +7,9 @@
     <string name="about_fragment_author_name">Mikhedov Konstantin</string>
     <string name="about_fragment_subtitle">student of BIB224</string>
     <string name="main_activity_navigation_hills_title">Hill\'s</string>
+    <string name="crypto_module_title">Encryption and Decryption</string>
+    <string name="crypto_module_edit_view_hint">Write something here</string>
+    <string name="crypto_module_subtitle">Use this block to decrypt and encrypt the text</string>
+    <string name="crypto_module_encrypt_btn">Encrypt</string>
+    <string name="crypto_module_decrypt_btn">Decrypt</string>
 </resources>
