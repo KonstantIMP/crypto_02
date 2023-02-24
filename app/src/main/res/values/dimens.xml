@@ -13,5 +13,5 @@
     <dimen name="content_card_elevation">7dp</dimen>
 
     <dimen name="about_fragment_photo_size">160dp</dimen>
-
+    <dimen name="matrix_cell_view_size">32dp</dimen>
 </resources>

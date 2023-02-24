@@ -12,4 +12,17 @@
     <string name="crypto_module_subtitle">Use this block to decrypt and encrypt the text</string>
     <string name="crypto_module_encrypt_btn">Encrypt</string>
     <string name="crypto_module_decrypt_btn">Decrypt</string>
+    <string name="key_module_title">Key settings</string>
+    <string name="key_module_subtitle">Setup matrix for the cipher</string>
+    <string name="key_module_choose_key_size">Choose the key\'s size:</string>
+
+    <string-array name="crypto_module_key_sizes" translatable="false">
+        <item>1 to 1</item>
+        <item>2 to 2</item>
+        <item>3 to 3</item>
+        <item>4 to 4</item>
+        <item>5 to 5</item>
+        <item>6 to 6</item>
+        <item>7 to 7</item>
+    </string-array>
 </resources>

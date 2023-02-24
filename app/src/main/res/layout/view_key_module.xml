@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.view.KeyView">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/content_title_size"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/content_card_padding"
+        android:layout_marginEnd="@dimen/content_card_padding"
+        android:text="@string/key_module_title"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/content_subtitle_size"
+        android:layout_marginStart="@dimen/content_card_padding"
+        android:layout_marginEnd="@dimen/content_card_padding"
+        android:text="@string/key_module_subtitle"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/content_card_margin"
+        app:cardCornerRadius="@dimen/content_card_radius"
+        android:layout_marginEnd="@dimen/content_card_padding"
+        android:layout_marginStart="@dimen/content_card_padding"
+        android:layout_marginBottom="@dimen/content_card_padding"
+        app:cardElevation="@dimen/content_card_elevation"
+        style="@style/Widget.Material3.CardView.Filled">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/content_card_padding"
+            android:divider="@drawable/divider_vertical"
+            android:showDividers="middle"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:divider="@drawable/divider_horizontal"
+                android:showDividers="middle"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="@string/key_module_choose_key_size"
+                    android:textStyle="bold"
+                    android:textSize="14sp"/>
+
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:entries="@array/crypto_module_key_sizes" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:spanCount="6"
+                tools:itemCount="36"
+                tools:listitem="@layout/view_matrix_cell"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
