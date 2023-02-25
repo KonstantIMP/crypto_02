@@ -1,10 +1,11 @@
 package org.kimp.crypto2.math
 
 class Matrix(
-    private val numberOfRows: Int,
-    private val numberOfColumns: Int,
+    val numberOfRows: Int,
+    val numberOfColumns: Int,
+    defaultValue: Long = 0L
 ) {
-    private val data: Array<LongArray> = Array(numberOfRows) { LongArray(numberOfColumns) { 0 } }
+    private val data: Array<LongArray> = Array(numberOfRows) { LongArray(numberOfColumns) { defaultValue } }
 
     init {
         require(numberOfColumns >= 0 && numberOfColumns >= 0) {

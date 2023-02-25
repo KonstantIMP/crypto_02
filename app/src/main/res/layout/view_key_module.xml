@@ -68,8 +68,28 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/error_holder"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardBackgroundColor="?attr/colorErrorContainer"
+                app:cardCornerRadius="@dimen/error_card_radius"
+                style="@style/Widget.Material3.CardView.Elevated">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/error_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnErrorContainer"
+                    android:layout_margin="@dimen/error_card_view_content_margin"
+                    android:textStyle="bold"
+                    tools:text="Something is not ok" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/matrix_recycler_view"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:spanCount="6"

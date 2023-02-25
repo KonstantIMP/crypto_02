@@ -4,6 +4,10 @@
     <dimen name="floating_bottom_navigation_view_margin">12dp</dimen>
     <dimen name="floating_bottom_navigation_view_radius">25dp</dimen>
     <dimen name="floating_bottom_navigation_view_elevation">5dp</dimen>
+    <dimen name="floating_bottom_navigation_view_size_request">82dp</dimen>
+
+    <dimen name="error_card_radius">12dp</dimen>
+    <dimen name="error_card_view_content_margin">8dp</dimen>
 
     <dimen name="content_title_size">26sp</dimen>
     <dimen name="content_subtitle_size">12sp</dimen>
@@ -13,5 +17,5 @@
     <dimen name="content_card_elevation">7dp</dimen>
 
     <dimen name="about_fragment_photo_size">160dp</dimen>
-    <dimen name="matrix_cell_view_size">32dp</dimen>
+    <dimen name="matrix_cell_view_size">56dp</dimen>
 </resources>

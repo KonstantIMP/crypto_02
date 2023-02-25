@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/floating_bottom_navigation_view_height"
         android:orientation="vertical"
         android:divider="@drawable/divider_horizontal"
         android:showDividers="middle">
@@ -24,6 +23,7 @@
 
         <org.kimp.crypto2.ui.view.KeyView
             android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/floating_bottom_navigation_view_size_request"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
