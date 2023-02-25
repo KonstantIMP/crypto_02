@@ -3,9 +3,8 @@ package org.kimp.crypto2.math
 class Matrix(
     val numberOfRows: Int,
     val numberOfColumns: Int,
-    defaultValue: Long = 0L
 ) {
-    private val data: Array<LongArray> = Array(numberOfRows) { LongArray(numberOfColumns) { defaultValue } }
+    private val data: Array<LongArray> = Array(numberOfRows) { LongArray(numberOfColumns) { 0L } }
 
     init {
         require(numberOfColumns >= 0 && numberOfColumns >= 0) {

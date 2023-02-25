@@ -5,10 +5,11 @@ import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.animation.Animation.AnimationListener
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.kimp.crypto2.R
 import org.kimp.crypto2.crypto.Alphabet
@@ -16,16 +17,17 @@ import org.kimp.crypto2.data.adapter.KeyMatrixAdapter
 import org.kimp.crypto2.databinding.ViewKeyModuleBinding
 import org.kimp.crypto2.math.Matrix
 import org.kimp.crypto2.math.gcd
-import timber.log.Timber
+import kotlin.math.min
 
 @AndroidEntryPoint
-class KeyView(context: Context, attrs: AttributeSet): LinearLayout(context, attrs), KeyMatrixAdapter.MatrixChangedListener {
+class KeyView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs),
+    KeyMatrixAdapter.MatrixChangedListener {
     private val binding: ViewKeyModuleBinding
 
     private val errorHolderAnimationDuration: Long
 
-    private var layoutManager: LayoutManager
-    private var adapter: KeyMatrixAdapter
+    private var layoutManager: GridLayoutManager
+    private lateinit var adapter: KeyMatrixAdapter
 
     var hasErrors: Boolean = false
 
@@ -37,12 +39,26 @@ class KeyView(context: Context, attrs: AttributeSet): LinearLayout(context, attr
         errorHolderAnimationDuration = context.resources
             .getInteger(android.R.integer.config_longAnimTime).toLong()
 
-        adapter = KeyMatrixAdapter(Matrix(1, 1, 1L), this)
         layoutManager = GridLayoutManager(context, 1)
-
         binding.matrixRecyclerView.layoutManager = layoutManager
-        binding.matrixRecyclerView.adapter = adapter
+
+        migrateMatrixSize(0, 1)
+
+        binding.sizeSelector.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                migrateMatrixSize(adapter.matrix.numberOfColumns, position + 1)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
     }
+
+    fun getEnteredMatrix(): Matrix = adapter.matrix
 
     override fun matrixEntered(matrix: Matrix) {
         val determiner = matrix.determiner()
@@ -58,8 +74,30 @@ class KeyView(context: Context, attrs: AttributeSet): LinearLayout(context, attr
     }
 
     override fun elementErased(row: Int, column: Int) {
-        binding.errorTextView.text = context.getString(R.string.key_module_erased_element_error, row, column)
+        binding.errorTextView.text =
+            context.getString(R.string.key_module_erased_element_error, row, column)
         registerError()
+    }
+
+    fun migrateMatrixSize(previousSize: Int, size: Int) {
+        if (size == previousSize) return
+        val newMatrix = Matrix(size, size)
+
+        val toCopy = min(size, previousSize)
+        for (i in 0 until toCopy) {
+            for (j in 0 until toCopy) {
+                newMatrix.setElement(
+                    i, j, adapter.matrix.getElement(i, j)
+                )
+            }
+        }
+
+        KeyMatrixAdapter(newMatrix, this).also { newAdapter ->
+            binding.matrixRecyclerView.adapter = newAdapter
+            adapter = newAdapter
+        }
+        layoutManager.spanCount = size
+        matrixEntered(newMatrix)
     }
 
     private fun clearError() {
@@ -67,7 +105,7 @@ class KeyView(context: Context, attrs: AttributeSet): LinearLayout(context, attr
             .translationY(-1f)
             .alpha(0f)
             .setDuration(errorHolderAnimationDuration)
-            .setListener(object: AnimatorListenerAdapter() {
+            .setListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     binding.errorHolder.visibility = GONE
                 }
