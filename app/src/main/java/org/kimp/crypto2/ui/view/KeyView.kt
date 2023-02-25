@@ -61,8 +61,9 @@ class KeyView(context: Context, attrs: AttributeSet) : LinearLayout(context, att
     fun getEnteredMatrix(): Matrix = adapter.matrix
 
     override fun matrixEntered(matrix: Matrix) {
-        val determiner = matrix.determiner()
-        if (gcd(determiner, Alphabet.ENGLISH.length.toLong()) != 1L) {
+        val alphabetLength = Alphabet.ENGLISH.length
+        val determiner = (matrix.determiner() + alphabetLength) % alphabetLength
+        if (gcd(determiner, alphabetLength.toLong()) != 1L) {
             binding.errorTextView.text = context.getString(
                 R.string.key_module_invalid_key,
                 determiner, Alphabet.ENGLISH.length
