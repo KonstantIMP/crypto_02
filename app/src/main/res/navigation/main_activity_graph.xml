@@ -17,4 +17,10 @@
         android:label="@string/main_activity_navigation_hills_title"
         tools:layout="@layout/fragment_hill_layout" />
 
+    <fragment
+        android:id="@+id/recurrent_hill_page"
+        android:name="org.kimp.crypto2.ui.fragment.RecurrentHillFragment"
+        android:label="@string/main_activity_navigation_hills_title"
+        tools:layout="@layout/fragment_recurrent_hill_layout" />
+
 </navigation>

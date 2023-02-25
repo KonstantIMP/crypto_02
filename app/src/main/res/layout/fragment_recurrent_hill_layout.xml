@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.RecurrentHillFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/floating_bottom_navigation_view_height"
+        android:orientation="vertical"
+        android:divider="@drawable/divider_horizontal"
+        android:showDividers="middle">
+
+        <org.kimp.crypto2.ui.view.CryptoView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <org.kimp.crypto2.ui.view.KeyView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <org.kimp.crypto2.ui.view.KeyView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</ScrollView>
