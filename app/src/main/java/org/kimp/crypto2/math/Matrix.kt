@@ -76,17 +76,48 @@ class Matrix(
 
         val matrixSize = numberOfRows
 
-        if (matrixSize == 0) return 0
+        if (matrixSize == 0) return 0L
         if (matrixSize == 1) return getElement(0, 0)
         if (matrixSize == 2) {
             return getElement(0, 0) * getElement(1, 1) - getElement(0, 1) * getElement(1, 0)
         }
 
-        var result: Long = 0
+        var result: Long = 0L
         for (c in 0 until matrixSize) {
             result += getElement(0, c) * getMinor(0, c).determiner() * (if (c % 2 == 0) 1 else -1)
         }
         return result
+    }
+
+    fun transponate(): Matrix {
+        val result = Matrix(numberOfColumns, numberOfRows)
+
+        data.forEachIndexed { rIndex, row ->
+            row.forEachIndexed { cIndex, value ->
+                result.setElement(cIndex, rIndex, value)
+            }
+        }
+
+        return result
+    }
+
+    fun inverse(): Matrix {
+        require(isSquare()) { "Unable to inverse for non-square matrix" }
+
+        val determiner = this.determiner()
+        require(determiner != 0L) { "Unable to calculate inverse for degenerate matrix" }
+
+        val result = Matrix(numberOfRows, numberOfColumns)
+        for (rIndex in 0 until numberOfRows) {
+            for (cIndex in 0 until numberOfColumns) {
+                result.setElement(
+                    rIndex, cIndex,
+                    getMinor(rIndex, cIndex).determiner() * (if ((cIndex + rIndex) % 2 == 0) 1 else -1)
+                )
+            }
+        }
+
+        return result.transponate().mapAll { el -> el / determiner }
     }
 
     override fun toString() =
