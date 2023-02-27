@@ -29,6 +29,7 @@ class KeyView(context: Context, attrs: AttributeSet) : LinearLayout(context, att
     private var layoutManager: GridLayoutManager
     private lateinit var adapter: KeyMatrixAdapter
 
+    var sizeChangedListener: KeySizeChangedListener? = null
     var hasErrors: Boolean = false
 
     init {
@@ -80,7 +81,7 @@ class KeyView(context: Context, attrs: AttributeSet) : LinearLayout(context, att
         registerError()
     }
 
-    fun migrateMatrixSize(previousSize: Int, size: Int) {
+    fun migrateMatrixSize(previousSize: Int, size: Int, call: Boolean = true) {
         if (size == previousSize) return
         val newMatrix = Matrix(size, size)
 
@@ -99,6 +100,8 @@ class KeyView(context: Context, attrs: AttributeSet) : LinearLayout(context, att
         }
         layoutManager.spanCount = size
         matrixEntered(newMatrix)
+
+        if (call) sizeChangedListener?.keySizeChanged(previousSize, size)
     }
 
     private fun clearError() {
@@ -126,5 +129,9 @@ class KeyView(context: Context, attrs: AttributeSet) : LinearLayout(context, att
                 .setListener(null)
         }
         hasErrors = true
+    }
+
+    interface KeySizeChangedListener {
+        fun keySizeChanged(from: Int, to: Int)
     }
 }
