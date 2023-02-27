@@ -20,4 +20,8 @@ class HillCipher: HillCipherBase() {
 
         return CryptResult(builder.toString(), skipped)
     }
+
+    fun decrypt(text: String, key: Matrix, alphabet: String = Alphabet.ENGLISH): CryptResult {
+        return encrypt(text, key.reversibleByMod(alphabet.length.toLong()), alphabet)
+    }
 }

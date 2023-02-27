@@ -14,10 +14,12 @@
         android:showDividers="middle">
 
         <org.kimp.crypto2.ui.view.CryptoView
+            android:id="@+id/crypto_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <org.kimp.crypto2.ui.view.KeyView
+            android:id="@+id/key_view"
             android:layout_width="match_parent"
             android:layout_marginBottom="@dimen/floating_bottom_navigation_view_size_request"
             android:layout_height="wrap_content" />

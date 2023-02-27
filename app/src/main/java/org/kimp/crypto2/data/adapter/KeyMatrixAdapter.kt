@@ -35,7 +35,7 @@ class KeyMatrixAdapter(
             holder.binding.inputEditText.setOnKeyListener { v, _, _ ->
                val editText = v as TextInputEditText
                 editText.text.toString().also {
-                    if (it.isNotEmpty()) {
+                    if (it.isNotEmpty() && it.toLongOrNull() != null) {
                         matrix.setElement(
                             coordinates.first, coordinates.second, it.toLong()
                         )

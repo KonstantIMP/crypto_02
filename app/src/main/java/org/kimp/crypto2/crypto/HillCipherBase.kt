@@ -39,5 +39,5 @@ abstract class HillCipherBase {
     }
 
     fun decryptBlock(block: String, key: Matrix, alphabet: String = Alphabet.ENGLISH): CryptResult =
-        encryptBlock(block, key.inverse(), alphabet)
+        encryptBlock(block, key.reversibleByMod(alphabet.length.toLong()), alphabet)
 }

@@ -1,5 +1,7 @@
 package org.kimp.crypto2.math
 
+import timber.log.Timber
+
 class Matrix(
     val numberOfRows: Int,
     val numberOfColumns: Int,
@@ -101,7 +103,7 @@ class Matrix(
         return result
     }
 
-    fun inverse(): Matrix {
+    fun reversibleByMod(mod: Long): Matrix {
         require(isSquare()) { "Unable to inverse for non-square matrix" }
 
         val determiner = this.determiner()
@@ -117,7 +119,13 @@ class Matrix(
             }
         }
 
-        return result.transponate().mapAll { el -> el / determiner }
+        val reversedDeterminer = determiner reverseByMod mod
+        return result.transponate()
+            .mapAll { el -> el * reversedDeterminer }
+            .mapAll { el -> el % mod }
+            .mapAll { el ->
+                if (el > 0) (mod - el) else (-el)
+            }
     }
 
     override fun toString() =
