@@ -8,7 +8,7 @@ fun gcdExtended(a: Long, b: Long): Triple<Long, Long, Long> {
     val recursiveResult = gcdExtended(b % a, a)
     return Triple(
         recursiveResult.first,
-        recursiveResult.third - b * recursiveResult.second / a,
+        recursiveResult.third - (b / a) * recursiveResult.second,
         recursiveResult.second
     )
 }

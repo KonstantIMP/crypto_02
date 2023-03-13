@@ -1,6 +1,8 @@
 package org.kimp.crypto2.math
 
 import timber.log.Timber
+import java.lang.Math.pow
+import kotlin.math.pow
 
 class Matrix(
     val numberOfRows: Int,
@@ -106,25 +108,31 @@ class Matrix(
     fun reversibleByMod(mod: Long): Matrix {
         require(isSquare()) { "Unable to inverse for non-square matrix" }
 
-        val determiner = this.determiner()
+        val determiner = (this.determiner() + mod) % mod
         require(determiner != 0L) { "Unable to calculate inverse for degenerate matrix" }
+
+        val reversedDeterminer = determiner reverseByMod mod
 
         val result = Matrix(numberOfRows, numberOfColumns)
         for (rIndex in 0 until numberOfRows) {
             for (cIndex in 0 until numberOfColumns) {
                 result.setElement(
                     rIndex, cIndex,
-                    getMinor(rIndex, cIndex).determiner() * (if ((cIndex + rIndex) % 2 == 0) 1 else -1)
+                    getMinor(rIndex, cIndex).determiner() * (-1.0).pow(cIndex + rIndex).toLong()
                 )
             }
         }
 
-        val reversedDeterminer = determiner reverseByMod mod
-        return result.transponate()
+
+        return result
+            .transponate()
             .mapAll { el -> el * reversedDeterminer }
             .mapAll { el -> el % mod }
             .mapAll { el ->
-                if (el > 0) (mod - el) else (-el)
+                if (determiner >= 0) {
+                    if (el >= 0) (el)
+                    else (mod + el)
+                } else el
             }
     }
 
@@ -136,6 +144,27 @@ class Matrix(
     private fun validateCoordinates(row: Int, column: Int) {
         require((0 <= row) && (0 <= column) && (row < numberOfRows) && (column < numberOfColumns)) {
             "Unable to access element at (${row}, ${column}) for the matrix with size (${numberOfRows}, ${numberOfColumns})"
+        }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Matrix
+
+        if (numberOfRows != other.numberOfRows) return false
+        if (numberOfColumns != other.numberOfColumns) return false
+        if (!data.contentDeepEquals(other.data)) return false
+
+        return true
+    }
+
+    companion object {
+        fun diagonal(size: Int): Matrix {
+            val result = Matrix(size, size)
+            for (i in 0 until size) result.setElement(i, i, 1)
+            return result
         }
     }
 }

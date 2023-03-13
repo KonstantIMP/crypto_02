@@ -24,6 +24,8 @@ javapoet = "1.13.0"
 ktlint = "0.48.1"
 ktlint_gradle = "11.0.0"
 
+junit = "5.9.2"
+
 detekt = "1.22.0"
 dokka = "1.7.20"
 benmanes = "0.44.0"
@@ -52,6 +54,8 @@ javapoet = { module = "com.squareup:javapoet", version.ref = "javapoet" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 detekt = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+
+junit = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 
 dokka_core = { module = "org.jetbrains.dokka:dokka-core", version.ref = "dokka" }
 dokka_gradle = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }

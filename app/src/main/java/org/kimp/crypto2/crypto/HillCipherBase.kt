@@ -30,7 +30,7 @@ abstract class HillCipherBase {
         }
 
         val resultMatrix = (key * blockMatrix).mapAll { el -> el % alphabet.length }
-        for (rIndex in 0 until keySize) {
+        for (rIndex in block.indices) {
             if (skipped.contains(rIndex)) builder.append(block[rIndex])
             else builder.append(alphabet[resultMatrix.getElement(rIndex, 0).toInt()])
         }

@@ -53,14 +53,13 @@ android {
 
 dependencies {
     implementation(libs.bundles.androidx)
-
+    implementation(libs.google.material)
     implementation(libs.timber)
 
     implementation(libs.hilt.android)
-    implementation("androidx.core:core-ktx:+")
     kapt(libs.hilt.compiler)
 
-    implementation(libs.google.material)
+    testImplementation(libs.junit)
 }
 
 kapt {
@@ -72,3 +71,6 @@ hilt {
     enableAggregatingTask = true
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}

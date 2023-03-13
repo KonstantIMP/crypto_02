@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import org.kimp.crypto2.crypto.CryptResult
+import org.kimp.crypto2.crypto.RecurrentHillCipher
 import org.kimp.crypto2.databinding.FragmentRecurrentHillLayoutBinding
 import org.kimp.crypto2.ui.view.CryptoView
 import org.kimp.crypto2.ui.view.KeyView
@@ -14,6 +15,8 @@ import org.kimp.crypto2.ui.view.KeyView
 @AndroidEntryPoint
 class RecurrentHillFragment: Fragment(), CryptoView.CryptoListener {
     private lateinit var binding: FragmentRecurrentHillLayoutBinding
+
+    private val cryptor = RecurrentHillCipher()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,11 +45,11 @@ class RecurrentHillFragment: Fragment(), CryptoView.CryptoListener {
 
     override fun encrypt(text: String): CryptResult? {
         if (binding.key1.hasErrors || binding.key2.hasErrors) return null
-        return null
+        return cryptor.encrypt(text, binding.key1.getEnteredMatrix(), binding.key2.getEnteredMatrix())
     }
 
     override fun decrypt(text: String): CryptResult? {
         if (binding.key1.hasErrors || binding.key2.hasErrors) return null
-        return null
+        return cryptor.decrypt(text, binding.key1.getEnteredMatrix(), binding.key2.getEnteredMatrix())
     }
 }
