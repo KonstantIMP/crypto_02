@@ -30,7 +30,7 @@ class RecurrentHillCipher: HillCipherBase() {
         for (i in 2 until size) {
             result.add(result[i - 2] * result[i - 1])
         }
-        return result.map { it.mapAll { el -> el % alphabet.length } }
+        return result.map { it.mapAll { el -> ((el % alphabet.length) + alphabet.length) % alphabet.length } }
     }
 
     fun encrypt(text: String, key1: Matrix, key2: Matrix, alphabet: String = Alphabet.ENGLISH): CryptResult {
